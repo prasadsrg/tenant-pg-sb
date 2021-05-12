@@ -1,0 +1,12 @@
+tenancy:
+  master:
+    datasource:
+      url: jdbc:postgresql://192.168.0.115:3306/postgres?useSSL=false
+      username: root
+      password: test
+      driverClassName: org.postgresql.Driver
+      connectionTimeout: 20000
+      maxPoolSize: 250
+      idleTimeout: 300000
+      minIdle: 5
+      poolName: masterdb-connection-pool
