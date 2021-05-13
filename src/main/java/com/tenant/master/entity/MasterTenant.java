@@ -1,7 +1,7 @@
 package com.tenant.master.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
+
 import java.io.Serializable;
 
 /**
@@ -13,34 +13,34 @@ public class MasterTenant implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "tenant_client_id")
-    private Integer tenantClientId;
+    @Column(name = "id")
+    private Integer id;
 
-    @Size(max = 50)
+
     @Column(name = "db_name",nullable = false)
     private String dbName;
 
-    @Size(max = 100)
+
     @Column(name = "url",nullable = false)
     private String url;
 
-    @Size(max = 50)
+
     @Column(name = "user_name",nullable = false)
     private String userName;
-    @Size(max = 100)
+
     @Column(name = "password",nullable = false)
     private String password;
-    @Size(max = 100)
+
     @Column(name = "driver_class",nullable = false)
     private String driverClass;
-    @Size(max = 10)
+
     @Column(name = "status",nullable = false)
     private String status;
 
     public MasterTenant() {
     }
 
-    public MasterTenant(@Size(max = 50) String dbName, @Size(max = 100) String url, @Size(max = 50) String userName, @Size(max = 100) String password, @Size(max = 100) String driverClass, @Size(max = 10) String status) {
+    public MasterTenant( String dbName, String url, String userName, String password, String driverClass, String status) {
         this.dbName = dbName;
         this.url = url;
         this.userName = userName;
@@ -49,13 +49,12 @@ public class MasterTenant implements Serializable {
         this.status = status;
     }
 
-    public Integer getTenantClientId() {
-        return tenantClientId;
+    public Integer getId() {
+        return id;
     }
 
-    public MasterTenant setTenantClientId(Integer tenantClientId) {
-        this.tenantClientId = tenantClientId;
-        return this;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getDbName() {

@@ -1,9 +1,9 @@
 tenancy:
   master:
     datasource:
-      url: jdbc:postgresql://192.168.0.115:3306/postgres?useSSL=false
-      username: root
-      password: test
+      url: jdbc:postgresql://pg.rndpro.in:5432/tenant_db
+      username: tenant_user
+      password: Tenant1234
       driverClassName: org.postgresql.Driver
       connectionTimeout: 20000
       maxPoolSize: 250

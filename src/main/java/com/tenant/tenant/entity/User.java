@@ -1,7 +1,6 @@
 package com.tenant.tenant.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
@@ -16,28 +15,27 @@ public class User implements Serializable {
     @Column(name = "user_id")
     private Integer userId;
 
-    @Size(max = 100)
     @Column(name = "full_name",nullable = false)
     private String fullName;
 
-    @Size(max = 10)
+
     @Column(name = "gender",nullable = false)
     private String gender;
 
-    @Size(max = 50)
+
     @Column(name = "user_name",nullable = false,unique = true)
     private String userName;
-    @Size(max = 100)
+
     @Column(name = "password",nullable = false)
     private String password;
-    @Size(max = 10)
+
     @Column(name = "status",nullable = false)
     private String status;
 
     public User() {
     }
 
-    public User(@Size(max = 100) String fullName, @Size(max = 10) String gender, @Size(max = 50) String userName, @Size(max = 100) String password, @Size(max = 10) String status) {
+    public User(String fullName, String gender,String userName, String password,String status) {
         this.fullName = fullName;
         this.gender = gender;
         this.userName = userName;
