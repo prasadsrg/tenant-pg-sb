@@ -11,10 +11,11 @@ import java.io.Serializable;
 @Table(name = "tbl_tenant_master")
 public class MasterTenant implements Serializable {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private Integer tenantClientId;
 
 
     @Column(name = "db_name",nullable = false)
@@ -49,12 +50,12 @@ public class MasterTenant implements Serializable {
         this.status = status;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getTenantClientId() {
+        return tenantClientId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setTenantClientId(Integer tenantClientId) {
+        this.tenantClientId = tenantClientId;
     }
 
     public String getDbName() {
