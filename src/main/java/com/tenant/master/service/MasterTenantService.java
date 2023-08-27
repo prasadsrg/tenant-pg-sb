@@ -7,5 +7,5 @@ import com.tenant.master.entity.MasterTenant;
  */
 public interface MasterTenantService {
 
-    MasterTenant findByClientId(Integer clientId);
+    MasterTenant findByClientId(String clientId);
 }

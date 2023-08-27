@@ -3,17 +3,14 @@ package com.tenant.tenant.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 
-/**
- * @author Md. Amran Hossain
- */
 @Entity
-@Table(name = "tbl_user")
-public class User implements Serializable {
+@Table(name = "profile")
+public class Profile implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private Integer userId;
+    @Column(name = "id")
+    private Integer id;
 
     @Column(name = "full_name",nullable = false)
     private String fullName;
@@ -32,10 +29,10 @@ public class User implements Serializable {
     @Column(name = "status",nullable = false)
     private String status;
 
-    public User() {
+    public Profile() {
     }
 
-    public User(String fullName, String gender,String userName, String password,String status) {
+    public Profile(String fullName, String gender, String userName, String password, String status) {
         this.fullName = fullName;
         this.gender = gender;
         this.userName = userName;
@@ -43,12 +40,12 @@ public class User implements Serializable {
         this.status = status;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getId() {
+        return id;
     }
 
-    public User setUserId(Integer userId) {
-        this.userId = userId;
+    public Profile setId(Integer id) {
+        this.id = id;
         return this;
     }
 
@@ -56,7 +53,7 @@ public class User implements Serializable {
         return fullName;
     }
 
-    public User setFullName(String fullName) {
+    public Profile setFullName(String fullName) {
         this.fullName = fullName;
         return this;
     }
@@ -65,7 +62,7 @@ public class User implements Serializable {
         return gender;
     }
 
-    public User setGender(String gender) {
+    public Profile setGender(String gender) {
         this.gender = gender;
         return this;
     }
@@ -74,7 +71,7 @@ public class User implements Serializable {
         return userName;
     }
 
-    public User setUserName(String userName) {
+    public Profile setUserName(String userName) {
         this.userName = userName;
         return this;
     }
@@ -83,7 +80,7 @@ public class User implements Serializable {
         return password;
     }
 
-    public User setPassword(String password) {
+    public Profile setPassword(String password) {
         this.password = password;
         return this;
     }
@@ -92,7 +89,7 @@ public class User implements Serializable {
         return status;
     }
 
-    public User setStatus(String status) {
+    public Profile setStatus(String status) {
         this.status = status;
         return this;
     }

@@ -7,9 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * @author Md. Amran Hossain
- */
 @Service
 public class MasterTenantServiceImpl implements MasterTenantService{
 
@@ -20,7 +17,7 @@ public class MasterTenantServiceImpl implements MasterTenantService{
 
 
     @Override
-    public MasterTenant findByClientId(Integer clientId) {
+    public MasterTenant findByClientId(String clientId) {
         LOG.info("findByClientId() method call...");
         return masterTenantRepository.findByTenantClientId(clientId);
     }

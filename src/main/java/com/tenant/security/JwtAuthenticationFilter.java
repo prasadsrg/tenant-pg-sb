@@ -24,9 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
 
-/**
- * @author Md. Amran Hossain
- */
+
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
@@ -48,7 +46,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             try {
                 username = jwtTokenUtil.getUsernameFromToken(authToken);
                 audience = jwtTokenUtil.getAudienceFromToken(authToken);
-                MasterTenant masterTenant = masterTenantService.findByClientId(Integer.valueOf(audience));
+                MasterTenant masterTenant = masterTenantService.findByClientId(audience);
                 if(null == masterTenant){
                     logger.error("An error during getting tenant name");
                     throw new BadCredentialsException("Invalid tenant and user.");

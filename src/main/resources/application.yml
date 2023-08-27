@@ -1,7 +1,7 @@
 tenancy:
   master:
     datasource:
-      url: jdbc:postgresql://pg.rndpro.in:5432/tenant_db
+      url: jdbc:postgresql://node.dfftech.com:5432/tenant_db
       username: tenant_user
       password: Tenant1234
       driverClassName: org.postgresql.Driver

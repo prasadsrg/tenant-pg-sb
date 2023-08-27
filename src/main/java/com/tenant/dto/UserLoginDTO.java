@@ -2,19 +2,16 @@ package com.tenant.dto;
 
 import java.io.Serializable;
 
-/**
- * @author Md. Amran Hossain
- */
 public class UserLoginDTO implements Serializable {
 
     private String userName;
     private String password;
-    private Integer tenantOrClientId;
+    private String tenantOrClientId;
 
     public UserLoginDTO() {
     }
 
-    public UserLoginDTO(String userName, String password, Integer tenantOrClientId) {
+    public UserLoginDTO(String userName, String password, String tenantOrClientId) {
         this.userName = userName;
         this.password = password;
         this.tenantOrClientId = tenantOrClientId;
@@ -38,11 +35,11 @@ public class UserLoginDTO implements Serializable {
         return this;
     }
 
-    public Integer getTenantOrClientId() {
+    public String getTenantOrClientId() {
         return tenantOrClientId;
     }
 
-    public UserLoginDTO setTenantOrClientId(Integer tenantOrClientId) {
+    public UserLoginDTO setTenantOrClientId(String tenantOrClientId) {
         this.tenantOrClientId = tenantOrClientId;
         return this;
     }

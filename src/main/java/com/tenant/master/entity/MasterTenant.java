@@ -4,18 +4,15 @@ import javax.persistence.*;
 
 import java.io.Serializable;
 
-/**
- * @author Md. Amran Hossain
- */
+
 @Entity
-@Table(name = "tbl_tenant_master")
+@Table(name = "tenant_master")
 public class MasterTenant implements Serializable {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer tenantClientId;
+    private String tenantClientId;
 
 
     @Column(name = "db_name",nullable = false)
@@ -50,11 +47,11 @@ public class MasterTenant implements Serializable {
         this.status = status;
     }
 
-    public Integer getTenantClientId() {
+    public String getTenantClientId() {
         return tenantClientId;
     }
 
-    public void setTenantClientId(Integer tenantClientId) {
+    public void setTenantClientId(String tenantClientId) {
         this.tenantClientId = tenantClientId;
     }
 

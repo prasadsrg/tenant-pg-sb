@@ -4,11 +4,9 @@ import javax.persistence.*;
 
 import java.io.Serializable;
 
-/**
- * @author Md. Amran Hossain
- */
+
 @Entity
-@Table(name = "tbl_product")
+@Table(name = "product")
 public class Product implements Serializable {
 
     @Id

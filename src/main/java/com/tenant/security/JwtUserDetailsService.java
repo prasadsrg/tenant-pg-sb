@@ -1,8 +1,10 @@
 package com.tenant.security;
 
-import com.tenant.tenant.repository.UserRepository;
+import com.tenant.tenant.entity.Profile;
+import com.tenant.tenant.repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,22 +13,19 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * @author Md. Amran Hossain
- */
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
 
     @Autowired
-    UserRepository userRepository;
+    ProfileRepository profileRepository;
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        com.tenant.tenant.entity.User user = userRepository.findByUserName(userName);
-        if(null == user){
+        Profile profile = profileRepository.findByUserName(userName);
+        if(null == profile){
             throw new UsernameNotFoundException("Invalid user name or password.");
         }
-        return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(), getAuthority());
+        return new User(profile.getUserName(), profile.getPassword(), getAuthority());
     }
 
     private List<SimpleGrantedAuthority> getAuthority() {
