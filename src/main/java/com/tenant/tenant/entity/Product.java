@@ -1,11 +1,14 @@
 package com.tenant.tenant.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 import java.io.Serializable;
 
 
 @Entity
+@Data
 @Table(name = "product")
 public class Product implements Serializable {
 
@@ -23,48 +26,4 @@ public class Product implements Serializable {
     @Column(name = "size",nullable = false,unique = true)
     private String size;
 
-    public Product() {
-    }
-
-    public Product(String productName, String quantity, String size) {
-        this.productName = productName;
-        this.quantity = quantity;
-        this.size = size;
-    }
-
-    public Integer getProductId() {
-        return productId;
-    }
-
-    public Product setProductId(Integer productId) {
-        this.productId = productId;
-        return this;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public Product setProductName(String productName) {
-        this.productName = productName;
-        return this;
-    }
-
-    public String getQuantity() {
-        return quantity;
-    }
-
-    public Product setQuantity(String quantity) {
-        this.quantity = quantity;
-        return this;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public Product setSize(String size) {
-        this.size = size;
-        return this;
-    }
 }

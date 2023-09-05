@@ -14,9 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
-/**
- * @author Md. Amran Hossain
- */
+
 @Aspect
 @Component
 public class RequestAuthorizationIntercept {

@@ -26,6 +26,12 @@ dependencies {
 	implementation 'org.springdoc:springdoc-openapi-ui:1.5.8'
 	implementation 'org.junit.jupiter:junit-jupiter-api:5.5.1'
 	implementation 'org.springframework.boot:spring-boot-starter-test'
+
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
 }
 
 test {

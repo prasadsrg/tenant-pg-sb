@@ -3,9 +3,7 @@ package com.tenant.master.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-/**
- * @author Md. Amran Hossain
- */
+
 @Configuration
 @ConfigurationProperties("tenancy.master.datasource")
 public class MasterDatabaseConfigProperties {

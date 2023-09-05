@@ -1,6 +1,6 @@
 package com.tenant.util;
 
-import com.tenant.constant.JWTConstants;
+import com.tenant.master.constant.JWTConstants;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -13,9 +13,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.function.Function;
 
-/**
- * @author Md. Amran Hossain
- */
 @Component
 public class JwtTokenUtil implements Serializable {
 

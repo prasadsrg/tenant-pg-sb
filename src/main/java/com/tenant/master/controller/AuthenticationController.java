@@ -1,8 +1,8 @@
-package com.tenant.controller;
+package com.tenant.master.controller;
 
-import com.tenant.constant.UserStatus;
-import com.tenant.dto.AuthResponse;
-import com.tenant.dto.UserLoginDTO;
+import com.tenant.master.constant.UserStatus;
+import com.tenant.master.dto.AuthResponse;
+import com.tenant.master.dto.UserLoginDTO;
 import com.tenant.master.config.DBContextHolder;
 import com.tenant.master.entity.MasterTenant;
 import com.tenant.master.service.MasterTenantService;
@@ -31,9 +31,6 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author Md. Amran Hossain
- */
 @RestController
 @RequestMapping("/api/auth")
 public class AuthenticationController implements Serializable {

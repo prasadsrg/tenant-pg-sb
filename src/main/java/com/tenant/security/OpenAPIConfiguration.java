@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Configuration;
 //        scheme = "bearer-key"
 //)
 @OpenAPIDefinition(
-        info = @Info(title = "Sample API", version = "v1"),
+        info = @Info(title = "Tenant API", version = "v1"),
         security = @SecurityRequirement(name = "bearer-key")
 )
 //@Operation(security = { @SecurityRequirement(name = "bearer-key") })

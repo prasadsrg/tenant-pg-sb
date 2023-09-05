@@ -1,6 +1,6 @@
 package com.tenant.security;
 
-import com.tenant.constant.JWTConstants;
+import com.tenant.master.constant.JWTConstants;
 import com.tenant.master.config.DBContextHolder;
 import com.tenant.master.entity.MasterTenant;
 import com.tenant.master.service.MasterTenantService;

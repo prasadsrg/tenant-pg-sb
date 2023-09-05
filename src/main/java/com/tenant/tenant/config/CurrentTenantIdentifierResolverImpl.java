@@ -4,9 +4,7 @@ import com.tenant.master.config.DBContextHolder;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
 
-/**
- * @author Md. Amran Hossain
- */
+
 public class CurrentTenantIdentifierResolverImpl implements CurrentTenantIdentifierResolver {
 
     private static final String DEFAULT_TENANT_ID = "tenant1";

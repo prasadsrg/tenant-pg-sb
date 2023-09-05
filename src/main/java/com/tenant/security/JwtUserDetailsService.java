@@ -1,7 +1,7 @@
 package com.tenant.security;
 
-import com.tenant.tenant.entity.Profile;
-import com.tenant.tenant.repository.ProfileRepository;
+import com.tenant.master.entity.Profile;
+import com.tenant.master.repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;

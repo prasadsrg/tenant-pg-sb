@@ -1,6 +1,7 @@
-package com.tenant.controller;
+package com.tenant.master.controller;
 
 import com.tenant.security.UserTenantInformation;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,24 +16,24 @@ import java.io.Serializable;
 import java.security.Principal;
 import java.util.Map;
 
-/**
- * @author Md. Amran Hossain
- */
+@Slf4j
 @RestController
-@RequestMapping("/api/product/logout")
+@RequestMapping("/api/auth/logout")
 public class LogoutController implements Serializable {
-    private static final Logger LOGGER = LoggerFactory.getLogger(LogoutController.class);
 
     @Autowired
     ApplicationContext applicationContext;
 
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<?> logoutFromApp(Principal principal) {
-        LOGGER.info("AuthenticationController::logoutFromApp() method call..");
+        log.info("AuthenticationController::logoutFromApp() method call.. principal value {}", principal);
         UserTenantInformation userCharityInfo = applicationContext.getBean(UserTenantInformation.class);
         Map<String, String> map = userCharityInfo.getMap();
-        map.remove(principal.getName());
-        userCharityInfo.setMap(map);
+        log.info("user CharityInfo Map :: {}", map);
+        if(map != null && principal != null && principal.getName() != null){
+            map.remove(principal.getName());
+            userCharityInfo.setMap(map);
+        }
         return ResponseEntity.ok(HttpStatus.OK);
     }
 }

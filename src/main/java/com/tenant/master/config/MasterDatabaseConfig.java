@@ -22,9 +22,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-/**
- * @author Md. Amran Hossain
- */
+
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = {"com.tenant.master.entity", "com.tenant.master.repository"},

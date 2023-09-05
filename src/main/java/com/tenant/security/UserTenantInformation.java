@@ -3,9 +3,7 @@ package com.tenant.security;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author Md. Amran Hossain
- */
+
 public class UserTenantInformation {
 
     private Map<String, String> map = new HashMap<>();

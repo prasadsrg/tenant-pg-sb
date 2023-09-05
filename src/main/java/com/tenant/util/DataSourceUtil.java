@@ -7,9 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.sql.DataSource;
 
-/**
- * @author Md. Amran Hossain
- */
+
 public final class DataSourceUtil {
 
     private static final Logger LOG = LoggerFactory.getLogger(DataSourceUtil.class);

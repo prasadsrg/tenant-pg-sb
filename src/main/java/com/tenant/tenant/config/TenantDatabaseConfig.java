@@ -20,9 +20,7 @@ import javax.persistence.EntityManagerFactory;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author Md. Amran Hossain
- */
+
 @Configuration
 @EnableTransactionManagement
 @ComponentScan(basePackages = { "com.tenant.tenant.repository", "com.tenant.tenant.entity" })
