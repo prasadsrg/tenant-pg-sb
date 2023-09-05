@@ -1,0 +1,14 @@
+<configuration>
+    <!-- Define the console appender -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- Configure the log pattern with MDC value -->
+            <pattern>%d{yyyy-MM-ddTHH:mm:ss.SSS} [%thread] %-5level [%mdc{x-trace-id}] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Set the root logger level and attach the console appender -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>

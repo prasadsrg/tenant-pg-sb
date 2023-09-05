@@ -1,7 +1,9 @@
 package com.tenant.tenant.controller;
 
+import com.tenant.config.ApiResponse;
 import com.tenant.master.controller.AuthenticationController;
 import com.tenant.security.RequestAuthorization;
+import com.tenant.tenant.entity.Product;
 import com.tenant.tenant.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.Serializable;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/product")
@@ -24,9 +27,11 @@ public class ProductController implements Serializable {
 
     @RequestAuthorization
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public ResponseEntity<Object> getAllProduct() {
+    public ResponseEntity<ApiResponse> getAllProduct() {
         log.info("getAllProduct() method call...");
-        return new ResponseEntity<>(productService.getAllProduct(),HttpStatus.OK);
+        List<Product> result =  productService.getAllProduct();
+        ApiResponse apiResponse = ApiResponse.builder().data(result).build();
+        return ResponseEntity.ok(apiResponse);
     }
 
 }
