@@ -1,5 +1,6 @@
 package com.tenant.master.controller;
 
+import com.tenant.config.AppException;
 import com.tenant.master.constant.UserStatus;
 import com.tenant.master.dto.AuthResponse;
 import com.tenant.master.dto.UserLoginDTO;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.annotation.ApplicationScope;
 
 
+import javax.validation.Valid;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,23 +51,23 @@ public class AuthenticationController implements Serializable {
     MasterTenantService masterTenantService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity<?> userLogin(@RequestBody UserLoginDTO userLoginDTO) throws AuthenticationException {
+    public ResponseEntity<?> userLogin(@Valid @RequestBody UserLoginDTO userLoginDTO) throws AuthenticationException {
         LOGGER.info("userLogin() method call...");
-        if(userLoginDTO == null ) throw new RuntimeException("Please provide user login");
+        if(userLoginDTO == null ) throw new AppException("Please provide user login");
         if(null == userLoginDTO.getUserName() || userLoginDTO.getUserName().isEmpty()){
             return new ResponseEntity<>("User name is required", HttpStatus.BAD_REQUEST);
         }
         //set database parameter
-        MasterTenant masterTenant = masterTenantService.findByClientId(userLoginDTO.getTenantOrClientId());
+        MasterTenant masterTenant = masterTenantService.findByClientId(userLoginDTO.getTenant());
         if(null == masterTenant || masterTenant.getStatus().toUpperCase().equals(UserStatus.INACTIVE)){
-            throw new RuntimeException("Please contact service provider.");
+            throw new AppException("Please contact service provider.");
         }
         //Entry Client Wise value dbName store into bean.
         loadCurrentDatabaseInstance(masterTenant.getDbName(), userLoginDTO.getUserName());
         final Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userLoginDTO.getUserName(), userLoginDTO.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        final String token = jwtTokenUtil.generateToken(userDetails.getUsername(),String.valueOf(userLoginDTO.getTenantOrClientId()));
+        final String token = jwtTokenUtil.generateToken(userDetails.getUsername(),String.valueOf(userLoginDTO.getTenant()));
         //Map the value into applicationScope bean
         setMetaDataAfterLogin();
         return ResponseEntity.ok(new AuthResponse(userDetails.getUsername(),token));
