@@ -6,8 +6,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
-import javax.xml.bind.ValidationException;
 import java.util.ArrayList;
 import java.util.List;
 

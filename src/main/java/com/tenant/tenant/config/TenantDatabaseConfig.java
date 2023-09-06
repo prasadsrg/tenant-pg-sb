@@ -7,7 +7,6 @@ import org.hibernate.engine.jdbc.connections.spi.MultiTenantConnectionProvider;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -23,8 +22,7 @@ import java.util.Map;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan(basePackages = { "com.tenant.tenant.repository", "com.tenant.tenant.entity" })
-@EnableJpaRepositories(basePackages = {"com.tenant.tenant.repository", "com.tenant.tenant.service" },
+@EnableJpaRepositories(basePackages = {"com.tenant.tenant.repository", "com.tenant.tenant.entity" },
         entityManagerFactoryRef = "tenantEntityManagerFactory",
         transactionManagerRef = "tenantTransactionManager")
 public class TenantDatabaseConfig {
@@ -46,7 +44,7 @@ public class TenantDatabaseConfig {
      *
      * @return
      */
-    @Bean(name = "datasourceBasedMultitenantConnectionProvider")
+    @Bean(name = "datasourceBasedMultiTenantConnectionProvider")
     @ConditionalOnBean(name = "masterEntityManagerFactory")
     public MultiTenantConnectionProvider multiTenantConnectionProvider() {
         // Autowires the multi connection provider
@@ -73,15 +71,15 @@ public class TenantDatabaseConfig {
      * @return
      */
     @Bean(name = "tenantEntityManagerFactory")
-    @ConditionalOnBean(name = "datasourceBasedMultitenantConnectionProvider")
+    @ConditionalOnBean(name = "datasourceBasedMultiTenantConnectionProvider")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(
-            @Qualifier("datasourceBasedMultitenantConnectionProvider")
+            @Qualifier("datasourceBasedMultiTenantConnectionProvider")
                     MultiTenantConnectionProvider connectionProvider,
             @Qualifier("currentTenantIdentifierResolver")
                     CurrentTenantIdentifierResolver tenantResolver) {
         LocalContainerEntityManagerFactoryBean emfBean = new LocalContainerEntityManagerFactoryBean();
         //All tenant related entities, repositories and service classes must be scanned
-        emfBean.setPackagesToScan("com.tenant");
+        emfBean.setPackagesToScan("com.tenant.tenant");
         emfBean.setJpaVendorAdapter(jpaVendorAdapter());
         emfBean.setPersistenceUnitName("tenantdb-persistence-unit");
         Map<String, Object> properties = new HashMap<>();
@@ -89,8 +87,8 @@ public class TenantDatabaseConfig {
         properties.put(Environment.MULTI_TENANT_CONNECTION_PROVIDER, connectionProvider);
         properties.put(Environment.MULTI_TENANT_IDENTIFIER_RESOLVER, tenantResolver);
         properties.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
-        properties.put(Environment.SHOW_SQL, true);
-        properties.put(Environment.FORMAT_SQL, true);
+        properties.put(Environment.SHOW_SQL, false);
+        properties.put(Environment.FORMAT_SQL, false);
         properties.put(Environment.HBM2DDL_AUTO, "none");
         emfBean.setJpaPropertyMap(properties);
         return emfBean;

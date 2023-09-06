@@ -60,7 +60,7 @@ public class MasterDatabaseConfig {
         // Set the master data source
         em.setDataSource(masterDataSource());
         // The master tenant entity and repository need to be scanned
-        em.setPackagesToScan(new String[]{MasterTenant.class.getPackage().getName(), MasterTenantRepository.class.getPackage().getName()});
+        em.setPackagesToScan("com.tenant.master");
         // Setting a name for the persistence unit as Spring sets it as
         // 'default' if not defined
         em.setPersistenceUnitName("masterdb-persistence-unit");
@@ -89,8 +89,8 @@ public class MasterDatabaseConfig {
     private Properties hibernateProperties() {
         Properties properties = new Properties();
         properties.put(org.hibernate.cfg.Environment.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
-        properties.put(org.hibernate.cfg.Environment.SHOW_SQL, true);
-        properties.put(org.hibernate.cfg.Environment.FORMAT_SQL, true);
+        properties.put(org.hibernate.cfg.Environment.SHOW_SQL, false);
+        properties.put(org.hibernate.cfg.Environment.FORMAT_SQL, false);
         properties.put(org.hibernate.cfg.Environment.HBM2DDL_AUTO, "none");
         return properties;
     }
