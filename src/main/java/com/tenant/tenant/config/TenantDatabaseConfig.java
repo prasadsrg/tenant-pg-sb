@@ -1,6 +1,6 @@
 package com.tenant.tenant.config;
 
-import org.hibernate.MultiTenancyStrategy;
+import jakarta.persistence.EntityManagerFactory;
 import org.hibernate.cfg.Environment;
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
 import org.hibernate.engine.jdbc.connections.spi.MultiTenantConnectionProvider;
@@ -15,7 +15,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.persistence.EntityManagerFactory;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -83,12 +83,12 @@ public class TenantDatabaseConfig {
         emfBean.setJpaVendorAdapter(jpaVendorAdapter());
         emfBean.setPersistenceUnitName("tenantdb-persistence-unit");
         Map<String, Object> properties = new HashMap<>();
-        properties.put(Environment.MULTI_TENANT, MultiTenancyStrategy.DATABASE);
+//      properties.put(Environment.MULTI_TENAN, MultiTenancyStrategy.DATABASE);
         properties.put(Environment.MULTI_TENANT_CONNECTION_PROVIDER, connectionProvider);
         properties.put(Environment.MULTI_TENANT_IDENTIFIER_RESOLVER, tenantResolver);
         properties.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
-        properties.put(Environment.SHOW_SQL, false);
-        properties.put(Environment.FORMAT_SQL, false);
+        properties.put(Environment.SHOW_SQL, true);
+        properties.put(Environment.FORMAT_SQL, true);
         properties.put(Environment.HBM2DDL_AUTO, "none");
         emfBean.setJpaPropertyMap(properties);
         return emfBean;
